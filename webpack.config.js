@@ -6,21 +6,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
 
-var getHtmlConfig = function(name){
+var getHtmlConfig = function(name,title){
     return {
         template: './src/view/' + name + '.html',
         filename: 'view/' + name + '.html',
         inject:true,
         hash:true,
-        chunks:['common',name]
+        chunks:['common',name],
+        title:title
     }
 }
 
 var config = {
     mode:'dev' === WEBPACK_ENV ? 'development' : 'production',
     entry:{
+        'common':'./src/page/common/index.js',
         'index':'./src/page/index/index.js',
-        'common':'./src/page/common/index.js'
+        'result':'./src/page/result/index.js',
+        
     },
     output:{
         publicPath:'/dist',
@@ -85,8 +88,9 @@ var config = {
         new ExtractTextPlugin({
             filename:'css/[name].css'
         }),
-        new HtmlWebpackPlugin(getHtmlConfig('index')),
-        new HtmlWebpackPlugin(getHtmlConfig('login')),
+        new HtmlWebpackPlugin(getHtmlConfig('index','首页')),
+        new HtmlWebpackPlugin(getHtmlConfig('login','登录')),
+        new HtmlWebpackPlugin(getHtmlConfig('result','结果'))
     ],
     optimization:{
         splitChunks:{
@@ -97,8 +101,7 @@ var config = {
                     minChunks:2
                 }
             }
-        },
-        runtimeChunk:false
+        }
     },
     devServer:{
         port:8088,
