@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<%=require('html-loader!./layout/head-common.html')%>
+<title>
+    <%= htmlWebpackPlugin.options.title %>--电商平台</title>
+
+<body>
+    <%= require('html-loader!./layout/nav-simple.html')%>
+
+    <div class="page-wrap">
+        <div class="w">
+            <div class="user-con">
+                <h1 class="user-title">用户登录</h1>
+                <div class="user-box">
+                        <div class="error-item">
+                                <i class="error-icon fa fa-minus-circle"></i>
+                                <span class="error-msg">error</span>
+                            </div>
+                            <div class="user-item">
+                                <label for="username"><i class="fa fa-user"></i></label>
+                                <input type="text" id="username" placeholder="请输入账号">
+                            </div>
+                            <div class="user-item">
+                                <label for="password"><i class="fa fa-lock"></i></label>
+                                <input type="password" id="password" placeholder="请输入密码">
+                            </div>
+                             <button class="btn btn-submit">登录</button>
+                             <div class="link-item">
+                                 <a href="./user-pass-reset.html" class="link">忘记密码</a>
+                                 <a href="./user-register.html" class="link">立即注册</a>
+                             </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= require('html-loader!./layout/footer.html')%>
+</body>
+
+</html>

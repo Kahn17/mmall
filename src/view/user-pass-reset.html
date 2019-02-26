@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<%=require('html-loader!./layout/head-common.html')%>
+<title>
+    <%= htmlWebpackPlugin.options.title %>--电商平台</title>
+
+<body>
+    <%= require('html-loader!./layout/nav-simple.html')%>
+
+    <div class="page-wrap">
+        <div class="w">
+            <div class="user-con">
+                <h1 class="user-title">
+                    找回密码
+                </h1>
+                <div class="user-box">
+                    <div class="error-item">
+                        <i class="fa fa-minus-circle error-icon"></i>
+                        <span class="error-msg">error</span>
+                    </div>
+                    <div class="user-item item-username">
+                        <p class="user-tips">请输入用户名：</p>
+                        <label for="username"><i class="fa fa-user"></i></label>
+                        <input type="text" id="username" placeholder="请输入用户名">
+                        <button class="btn get-question">下一步</button>
+                    </div>
+                    <div class="user-item item-question">
+                        <p class="user-tips">请输入密码提示问题答案：</p>
+                        <label for="answer"><i class="fa fa-key"></i></label>
+                        <input type="text" id="answer" placeholder="请输入密码提示问题答案">
+                        <button class="btn get-answer">下一步</button>
+                    </div>
+                    <div class="user-item item-password">
+                        <p class="user-tips">请输入新密码：</p>
+                        <label for="password"><i class="fa fa-lock"></i></label>
+                        <input type="text" id="password" placeholder="请输入新密码">
+                        <button class="btn reset-password">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= require('html-loader!./layout/footer.html')%>
+</body>
+
+</html>

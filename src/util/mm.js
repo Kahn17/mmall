@@ -6,7 +6,7 @@ var conf = {
 var _mm = {
     request: function (param) {
         var _this = this;
-        console.log('ss');
+        
         $.ajax({
             type: param.method || 'get',
             url: param.url || '',
@@ -15,7 +15,7 @@ var _mm = {
             success: function (res) {
                 //请求成功
                 if (0 === res.status) {
-                    typeof res.success === 'function' && param.success(res.data, res.msg);
+                    typeof param.success === 'function' && param.success(res.data, res.msg);
                 }
                 //没有登录状态，需要强制登录
                 else if (10 === res.status) {
@@ -23,7 +23,7 @@ var _mm = {
                 }
                 //请求数据错误
                 else if (1 === res.status) {
-                    typeof res.error === 'function' && param.error(res.msg);
+                    typeof param.error === 'function' && param.error(res.msg);
                 }
             },
             error: function (err) {
@@ -39,14 +39,14 @@ var _mm = {
     getUrlParam: function (name) {
         var reg = RegExp('(^|&)' + name + '=([^&]*)(&|$)');
         var result = window.location.search.substr(1).match(reg);
-        return result ? result[2] : null;
+        return result ? result[2] :  null;
     },
     //渲染HTML模板
     renderHtml: function (htmlTemplate, data) {
         var template = Hogan.compile(htmlTemplate);
-        var  result = template.render(data);
+        var result = template.render(data);
         return result;
-        
+
     },
     //成功提示
     successTips: function (msg) {
@@ -54,7 +54,8 @@ var _mm = {
     },
     //失败提示
     errorTips: function (err) {
-        alert(err | '操作失败');
+        
+        alert(err || '操作失败');
     },
     //字段验证，支持非空，手机，邮箱的判断
     validate: function (value, type) {
@@ -69,7 +70,7 @@ var _mm = {
         }
         //邮箱格式验证
         if ('email' === type) {
-            return /^(\w) + (\.\w+)*@(\w)+ ((\.\w{2,3}){1,3})$/.test(value);
+            return /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/.test(value);
         }
     },
     //统一登录处理
